@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: ai-report-generator
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/ai_report_db?createDatabaseIfNotExist=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+logging:
+  level:
+    root: INFO
+    com.ai.report: DEBUG
+
+ai:
+  gemini:
+    api-key: ${GEMINI_API_KEY:your-gemini-key}
+    model: gemini-pro-vision
+  openai:
+    api-key: ${OPENAI_API_KEY:your-openai-key}
+    model: gpt-4-vision-preview
+  claude:
+    api-key: ${CLAUDE_API_KEY:your-claude-key}
+    model: claude-3-opus-20240229
+
+app:
+  upload:
+    dir: ./uploads
+  report:
+    output: ./reports
